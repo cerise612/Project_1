@@ -5,44 +5,80 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
-        <link href="style.css" type="text/css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Limelight|Montserrat" rel="stylesheet">
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Limelight|Montserrat" rel="stylesheet">
     <title>Project 1</title>
 </head>
 
 <body>
+    <!-- header -->
     <div class="container-fluid" id="header">
         <h1>header</h1>
     </div>
-    <div class="container-fluid" id="">
-        map
-    </div>
-    <div class="container" id="">
-            buttons
-            <button type="button" class="btn btn-primary" id="">
+    <!-- map div -->
+    <div class="container-fluid" id="map">
+        <!-- buttons to narrow content -->
+        <span class="buttons">
+            <button type="button" class="btn btn-primary" id="movies">
                 <img src="#" alt="">
             </button>
+            <button type="button" class="btn btn-primary" id="food">
+                <img src="#" alt="">
+            </button>
+            <button type="button" class="btn btn-primary" id="bars">
+                <img src="#" alt="">
+            </button>
+            <button type="button" class="btn btn-primary" id="coffee">
+                <img src="#" alt="">
+            </button>
+            <button type="button" class="btn btn-primary" id="activities">
+                <img src="#" alt="">
+            </button>
+        </span>
+    </div>
+    <!-- chat div -->
+    <div class="container-fluid" id="chat">
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
         </div>
-    <div class="container-fluid" id="">
-        results
     </div>
-    <div class="container-fluid" id="">
-        chat
+    <!-- collapsable calendar -->
+    <!-- <div class="container-fluid" id="calendar">
+        <div id="sidebar-wrapper"> -->
+            <!-- Collapse button -->
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div> -->
+    <!-- results container -->
+    <div class="container-fluid" id="results">
+        <div class="col-sm-12">
+            <!-- table header -->
+            <h4></h4>
+            <table class="table" id="table-results">
+                <thead>
+                    <!-- column headers -->
+                    <tr id=tableHeaders>
+                    </tr>
+                </thead>
+                <!-- results -->
+                <tbody id="results-entry">
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="container-fluid" id="">
-        calendar
-    </div>
-    <div class="container-fluid" id="">
-        vote
+    <!-- voting div -->
+    <div class="container-fluid" id="vote">
+        <!-- class="selections" -->
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
@@ -51,4 +87,3 @@
 </body>
 
 </html>
-
