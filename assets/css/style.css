@@ -3,7 +3,8 @@ body{
 }
 #header{
     height: 10vh;
-    /* background: url("../images/header.jpg"); */
+    background: url("../images/vector-illustration-galaxy-fantasy-background-260nw-1055265833.jpg");
+    /* background: url("../images/header_small.png"); */
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
