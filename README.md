@@ -22,3 +22,11 @@ Pull Google Calendar into app to allow easier viewing of available times.
 Allow voting of theaters or allow app to select best theatre based on location. 
 Fly out module for movie information.
 Allow other social scheduling events (restaurants, study sessions, etc.)
+
+
+MVP Goals
+
+1. groups of people who want to organize a social event.
+2. the use of multiple apps to plan a social engagement.
+3. to facilitae the planning and purchasing of event tickets.
+4. a group of friends wants to schedule a night out and uses the chat function to decide what day and time.  The map tells them what facilities are in their area.  the results provide them with available options.  They will then add their choices to the voting area.  Once selected they can purchase tickets via the partner site.git 
