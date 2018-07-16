@@ -1,0 +1,77 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+#header{
+    height: 10vh;
+    background: url("../images/vector-illustration-galaxy-fantasy-background-260nw-1055265833.jpg");
+    /* background: url("../images/header_small.png"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* position: absolute; */
+    border: thick solid;
+    border-color: red;
+    font-family: 'Limelight', cursive;
+}
+#map{
+    background: url("../images/map_placeholder.jpg");
+    height: 25vh;
+    /* position: absolute; */
+    border: thick solid;
+    border-color: red;
+    z-index: 1;
+}
+.buttons{
+    z-index: 2; 
+    display: block;
+    /* flex-direction: column; */
+    
+}
+#chat{
+    float: left;
+    border: thick solid;
+    border-color: red;
+    background: url("../images/chat_placeholder.png");
+    width: 25vw;
+    height: 55vh;
+}
+#results{
+    float: right;
+    width: 75vw;
+    height: 55vh;
+    background: url("../images/results_placeholder.JPG");
+    /* position: absolute; */
+    border: thick solid;
+    border-color: red;
+}
+#vote{
+    clear: both;
+    height: 10vh;
+    background: url("../images/vote_placeholder.jpg");
+    /* position: absolute; */
+    border: thick solid;
+    border-color: red;
+}
+#sidebar-wrapper {
+    margin-right: -150px;
+    right: 70px;
+    width: 25vh;
+    background: #222;
+    /* position: fixed; */
+    height: 100%;
+    z-index: 10000;
+    transition: all .4s ease 0s;
+}
+
+.sidebar-nav {
+    display: block;
+    float: left;
+    width: 150px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
