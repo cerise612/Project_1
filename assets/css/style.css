@@ -56,7 +56,7 @@ button[type="submit"] {
 }
 #results{
     float: right;
-    width: 75vw;
+    width: 73vw;
     height: 55vh;
     background: url("../images/results_placeholder.JPG");
     /* position: absolute; */
