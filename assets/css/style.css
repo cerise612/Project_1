@@ -73,6 +73,28 @@ body{
 
 }
 /* results */
+    float: left;
+    border: thick solid;
+    border-color: red;
+    /* background: url("../images/chat_placeholder.png");  */
+    width: 25vw;
+    height: 55vh;
+}
+
+button[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    color:white;
+    background-color:#04060F;
+}
+
+.odd{
+    background-color: whitesmoke; 
+}
+.even{
+    background-color: #0294A5;
+    color: white;
+}
 #results{
      /* float: left;  */
     width: 85%;
