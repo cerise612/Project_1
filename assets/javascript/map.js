@@ -6,7 +6,8 @@
         },
           function (results, status) {
             if (status == google.maps.GeocoderStatus.OK)
-              document.getElementById("address").innerHTML = results[0].formatted_address;
+              // document.getElementById("address").innerHTML = results[0].formatted_address;
+              console.log(results[0].formatted_address);
             else
               document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
           });
@@ -31,14 +32,11 @@
         writeAddressName(userLatLng);
   
         var myOptions = {
-          zoom: 16,
+          zoom: 10,
           center: userLatLng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // Draw the map
-        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions, {
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles: [
-            { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+            { elementType: 'geometry', stylers: [{ color: '#0294a5' }] },
             { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
             { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
             {
@@ -79,7 +77,7 @@
             {
               featureType: 'road.highway',
               elementType: 'geometry',
-              stylers: [{ color: '#746855' }]
+              stylers: [{ color: '#03353e' }]
             },
             {
               featureType: 'road.highway',
@@ -117,6 +115,12 @@
               stylers: [{ color: '#17263c' }]
             }
           ]
+          
+          
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions, {
+
         });
         // Place the marker
         var marker, i;
@@ -125,6 +129,13 @@
           marker = new google.maps.Marker({
             position: userLocations[i],
             map: mapObject,
+            title: 'userMarker',
+            zoom: 10,
+            icon: {
+              url: "assets/images/Flag_2.svg",
+              scaledSize: new google.maps.Size(64, 64)
+            }
+            // fillColor: '#c1403d',
           });
           console.log("working " + userLocations[i]);
           google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -141,9 +152,9 @@
             center: userLocations[j],
             radius: position.coords.accuracy,
             map: mapObject,
-            fillColor: '#0000FF',
+            fillColor: '#a79c93',
             fillOpacity: 0.5,
-            strokeColor: '#0000FF',
+            strokeColor: '#c1403d',
             strokeOpacity: 1.0
           });
           mapObject.fitBounds(circle.getBounds());
@@ -155,6 +166,14 @@
             }
           })(circle, j));
         };
+
+        //central location
+        var bound = new google.maps.LatLngBounds();
+        for (k = 0; k < userLocations.length; k++) {
+          bound.extend(new google.maps.LatLng(userLocations[k]));
+          // OTHER CODE
+        }
+        console.log(bound.getCenter());
       }
   
       // Error
