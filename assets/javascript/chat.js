@@ -51,7 +51,7 @@ rMessage.append(rAppend);
 
 msgIndex++;
 
-console.log("#text", msgText )
+console.log("#text", msg.Text )
 }, function (errorObject) {
 console.log("Errors handled: " + errorObject.code);
 });
