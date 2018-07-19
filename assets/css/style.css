@@ -10,18 +10,6 @@ body{
     border-style: ridge;
     border-width: 3px;
     border-color: #a79c93;
-<<<<<<< HEAD
-    /* background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; */
-    /* position: absolute; */
-    /* border: thick solid;
-    border-color: red;
-    font-family: 'Limelight', cursive; */
-=======
->>>>>>> ff97204d6830c023a18f6a0a78ca01ab16f4fb13
 }
 /* map */
  /* Always set the map height explicitly to define the size of the div
@@ -65,11 +53,6 @@ h6{
     border-radius: 8px;
     border: none;
     margin-top: 2px;
-<<<<<<< HEAD
-
-}
-/* results */
-=======
 }
 
 button[type="submit"] {
@@ -91,7 +74,6 @@ button[type="submit"] {
     width: 100%;
     padding: 0px;
 }
->>>>>>> ff97204d6830c023a18f6a0a78ca01ab16f4fb13
 #results{
     height: 1000px;
 }
