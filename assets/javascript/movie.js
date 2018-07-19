@@ -22,9 +22,9 @@ database.ref("votes").on("value", function (snapshot) {
     votesInOrder.sort(function (a, b) {
         return b[1] - a[1];
     });
-    var win1P = $("<p>").text(votesInOrder[0][0] + ": " + votesInOrder[0][1] + " votes").css("margin","auto");
-    var win2P = $("<p>").text(votesInOrder[1][0] + ": " + votesInOrder[1][1] + " votes").css("margin","auto");
-    var win3P = $("<p>").text(votesInOrder[2][0] + ": " + votesInOrder[2][1] + " votes").css("margin","auto");
+    var win1P = $("<p>").text(votesInOrder[0][0] + ": " + votesInOrder[0][1] + " vote(s)").css("margin","auto");
+    var win2P = $("<p>").text(votesInOrder[1][0] + ": " + votesInOrder[1][1] + " vote(s)").css("margin","auto");
+    var win3P = $("<p>").text(votesInOrder[2][0] + ": " + votesInOrder[2][1] + " vote(s)").css("margin","auto");
     votingData.empty();
     if(votesInOrder[0][1] == "0"){
         votingData.append("<p> No voting data yet.</p>")
@@ -123,13 +123,13 @@ function populateMovies(){
                 } else {
                     movieImgURL = "https://image.tmdb.org/t/p/original" + omdbResponse.results[0].poster_path;
                     var movieContainer = $("<div>");
-                    movieContainer.css("width", "33%").css("display", "inline-block");
-                    var movieImg = $("<img>").attr("src", movieImgURL).css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
+                    movieContainer.css("width", "14%").css("display", "inline-block");
+                    var movieImg = $("<img>").attr("src", movieImgURL).addClass("poster").css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
                     movieNameP = $("<p>").text(movieNameResponse);
-                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(65%, -275%)").attr("id", movieID + "check").css("display", "none");
+                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-105%, 10%)").attr("id", movieID + "check").css("display", "none");
     
                     movieContainer.append(movieImg);
-                    movieContainer.append(movieNameP);
+                    // movieContainer.append(movieNameP);
                     movieContainer.append(checkMark);
     
                     moviesContainer.append(movieContainer);
