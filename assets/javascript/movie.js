@@ -12,6 +12,7 @@ var showTimeResults = false;
 var moviesContainer = $("#results"); //! Change to actual container
 moviesContainer.empty();
 var votingData = $("#vote"); //! Change to actual container
+var winMoviePoster;
 
 
 database.ref("flags").on("value", function (snapshot) {
@@ -135,8 +136,8 @@ database.ref("votesTime").on("value", function (snapshot) {
                 "winningTime": winningTime
             });
         }
-        var clearVotesBtn = $("<button>").text("Clear Votes").attr("id", "clearTimeVotesBtn");
-        var endVotingBtn = $("<button>").text("End Voting").attr("id", "endTimeVotingBtn");
+        var clearTimeVotesBtn = $("<button>").text("Clear Votes").attr("id", "clearTimeVotesBtn");
+        var endTimeVotingBtn = $("<button>").text("End Voting").attr("id", "endTimeVotingBtn");
         votingData.append(clearTimeVotesBtn);
         votingData.append(endTimeVotingBtn);
 
@@ -279,7 +280,6 @@ function populateMovies() {
 function voteMovieTimes() {
     showVoteResults = false;
     showTimeResults = true;
-    votingData.empty();
 
     database.ref().once("value", function (snapshot) {
         movieDateAndZip = (snapshot.child("flags").val()).selectedDate + "_" + (snapshot.child("flags").val()).selectedZip;
@@ -298,6 +298,7 @@ function voteMovieTimes() {
         var showTimes = movieTimesJSON[index].showtimes;
         var posterIndex = posterIndexs.findIndex(obj => obj.Name == winMovie);
         var posterURL = posterIndexs[posterIndex].URL;
+        winMoviePoster = posterURL;
         var showTimeDisplayArray = [];
 
         var childArray = [];
@@ -386,6 +387,33 @@ $(votingData).on("click", function (e) {
         voteMovieTimes();
     }
 
+    if (e.target.id == "clearTimeVotesBtn") {
+        console.log("Votes Cleared");
+        database.ref("votesTime").set({
+            "No votes yet 1": "0",
+            "No votes yet 2": "0",
+            "No votes yet 3": "0"
+        });
+    }
+    if (e.target.id == "endTimeVotingBtn") {
+        console.log("Vote Ending");
+        database.ref("flags").update({
+            "movieVoting": false,
+            "timeVoting": false
+
+        });
+        moviesContainer.empty();
+
+        var movieContainer = $("<div>").css("float", "left").css("width", "40%");
+        var movieIMG = $("<img>").attr("src", winMoviePoster).css("width", "90%");
+        moviesContainer.append("<h4>Winning Movie</h4>");
+        movieContainer.append(movieIMG);
+        movieContainer.append("<p>" + winMovie + "</p>");
+        moviesContainer.append(movieContainer);
+
+
+    }
+
 })
 
 moviesContainer.on("click", function (e) {
@@ -435,7 +463,6 @@ moviesContainer.on("click", function (e) {
             "selectedDate": movieDate,
             "selectedZip": movieZip,
             "timeVoting": false
-
         });
 
     }
