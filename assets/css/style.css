@@ -22,7 +22,7 @@ body{
     border-color: #a79c93; */
 }
 .buttons{
-    z-index: 2; 
+    z-index: 5; 
     display: block;
     /* flex-direction: column; */
 }
