@@ -40,7 +40,9 @@ database.ref("votes").on("value", function (snapshot) {
     }
 
     var clearVotesBtn = $("<button>").text("Clear Votes").attr("id","clearVotesBtn");
+    var endVotingBtn = $("<button>").text("End Voting").attr("id", "endVotingBtn");
     votingData.append(clearVotesBtn);
+    votingData.append(endVotingBtn);
 });
 
 
@@ -100,7 +102,7 @@ function populateMovies(){
         // console.log(snapshot.val())
     
         var movieTimesJSON = JSON.parse(snapshot.child(movieDate).val());
-        console.log(movieTimesJSON);
+        // console.log(movieTimesJSON);
     
         for (x in movieTimesJSON) {
             let movieNameResponse = movieTimesJSON[x].title;
@@ -151,6 +153,9 @@ $(votingData).on("click", function(e){
         "No votes yet 2":"0",
         "No votes yet 3":"0"
     });
+    }
+    if (e.target.id=="endVotingBtn"){
+        console.log("Vote Ending");
     }
 
 })
