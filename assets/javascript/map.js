@@ -19,7 +19,7 @@ database.ref("userLocations").on("child_added", function (snapshot) {
     userLocations.push(snapshot.val().tempUserLoc);
     console.log(userLocations);
     // !____________________________________________________
-
+    
 
     // !____________________________________________________
 
