@@ -1,29 +1,40 @@
 body{
     font-family: 'Montserrat', sans-serif;
 }
+/* header */
 #header{
-    height: 10vh;
-    background: url("../images/vector-illustration-galaxy-fantasy-background-260nw-1055265833.jpg");
-    /* background: url("../images/header_small.png"); */
+    height: 192px;
+    /* background: url("../images/vector-illustration-galaxy-fantasy-background-260nw-1055265833.jpg"); */
+    background: url("../images/header_med.png"); 
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
+    border-style: ridge;
+    border-width: 3px;
+    border-color: #a79c93;
+    /* background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover; */
     /* position: absolute; */
-    border: thick solid;
+    /* border: thick solid;
     border-color: red;
-    font-family: 'Limelight', cursive;
+    font-family: 'Limelight', cursive; */
 }
+/* map */
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
 #map{
-    background: url("../images/map_placeholder.jpg");
-    height: 25vh;
+    /* background: url("../images/map_placeholder.jpg"); */
+    /* height: 100%; */
+    height: 75vh;
     /* position: absolute; */
-    border: thick solid;
-    border-color: red;
+    /* border: thick solid;
+    border-color: red; */
     z-index: 1;
+    /* border-style: ridge;
+    border-width: 1px;
+    border-color: #a79c93; */
 }
 .buttons{
     z-index: 2; 
@@ -31,46 +42,56 @@ body{
     /* flex-direction: column; */
     
 }
+/* chat */
 #chat{
-    float: left;
-    border: thick solid;
-    border-color: red;
+     /* float: left;  */
+    /* border: thick solid;
+    border-color: red; */
     /* background: url("../images/chat_placeholder.png");  */
-    width: 25vw;
-    height: 55vh;
-}
+    /* width: 25%; */
+    height: 1000px;
+    /* padding-top: 5px; */
+    padding-left: 0px; 
+     padding-right: 0px;
+     margin-left: 0px;
+     margin-right: 0px;
 
-button[type="submit"] {
-    font-family: FontAwesome;
-    cursor: pointer;
-    color:white;
-    background-color:#04060F;
 }
-
-.odd{
-    background-color: whitesmoke; 
+#userName{
+    border-color: #a79c93;
 }
-.even{
-    background-color: #0294A5;
+#text{
+    border-color: #a79c93;
+}
+#post{
+    background-color: #c1403d;
     color: white;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 8px;
+    border: none;
+    margin-top: 2px;
+
 }
+/* results */
 #results{
-    float: right;
-    width: 73vw;
-    height: 55vh;
+     /* float: left;  */
+    width: 85%;
+    height: 1000px;
+    /* height: 55vh; */
     background: url("../images/results_placeholder.JPG");
     /* position: absolute; */
-    border: thick solid;
-    border-color: red;
+    /* border: thick solid;
+    border-color: red; */
 }
 #vote{
     clear: both;
-    height: 10vh;
+    height: 192 px;
     background: url("../images/vote_placeholder.jpg");
     /* position: absolute; */
-    border: thick solid;
-    border-color: red;
+    /* border: thick solid;
+    border-color: red; */
 }
+/* calendar */
 #sidebar-wrapper {
     margin-right: -150px;
     right: 70px;
@@ -90,3 +111,81 @@ button[type="submit"] {
     margin: 0;
     padding: 0;
 }
+/* responsiveness */
+@media (max-width: 640px) {
+    #header {
+        height: 96px;
+        background: url("../images/header_small.png"); 
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #map{
+        height: 35vh;
+        z-index: 1;
+    }
+    img{
+        width: 20px;  height: 20px 
+    }
+    #chat{
+       width: 25%;
+       height: 500px;
+       padding-left: 0px; 
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+   }
+   #results{
+   width: 75%;
+   height: 500px;
+   background: url("../images/results_placeholder.JPG");
+   }
+   #vote{
+    clear: both;
+    height: 96px;
+    background: url("../images/vote_placeholder.jpg");
+    }
+}
+@media (max-width: 940px) {
+    #header {
+        height: 96px;
+        background: url("../images/header_small.png"); 
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #map{
+        height: 35vh;
+        z-index: 1;
+    }
+    img{
+        width: 20px;  height: 20px 
+    }
+    #chat{
+       width: 25%;
+       height: 500px;
+       padding-left: 0px; 
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+   }
+   #results{
+   width: 75%;
+   height: 500px;
+   background: url("../images/results_placeholder.JPG");
+   }
+   #vote{
+    clear: both;
+    height: 96px;
+    background: url("../images/vote_placeholder.jpg");
+    }
+    }
+
+/* @media (max-width: 1200px) {
+    #block1, #block2 {
+        width: 50%;
+    }
+} */
+/* @media (max-width: 1800px) {
+    #block1, #block2 {
+        width: 50%;
+    }
+}  */
