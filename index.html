@@ -28,37 +28,48 @@
 <body>
     <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
         <!-- header -->
+        <span>
         <div class="container-fluid" id="header">
-                <button type="button" class="search" value="f1d8" id="newEvent">New Event</button>
-                <a href="dashboard.html" class="btn btn-link" id="user" tabindex="-1" role="button" aria-disabled="true"><img src="assets/images/user.png" alt=""></a>
+                <nav class="navbar navbar-expand-lg navbar">
+                        <ul class="nav nav-pills" id="headerButtons">
+                                <li class="nav-item">
+                                  <a class="nav-link active" id="newEvent" href="#">New Event</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="user" href="dashboard.html"><img src="assets/images/user.png" alt=""></a>
+                                </li>
+                            </ul>
+                        </nav>
+                <!-- <button type="button" class="search" value="f1d8" id="newEvent">New Event</button>
+                <a href="dashboard.html" class="btn btn-link" id="user" tabindex="-1" role="button" aria-disabled="true"><img src="assets/images/user.png" alt=""></a> -->
         </div>
+    </span>
         <!-- map div -->
         <div class="container-fluid" id="map">
-            <!-- buttons to narrow content -->
-            <!-- <span class="buttons">
-            <button type="button" class="btn btn-link" id="movies">
-                <img src="assets/images/movie_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="food">
-                <img src="assets/images/food_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="bars">
-                <img src="assets/images/bars_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="coffee">
-                <img src="assets/images/coffee_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="nightlife">
-                <img src="assets/images/nightlife_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="shows">
-                <img src="assets/images/shows_button.png" alt="">
-            </button>
-            <button type="button" class="btn btn-link" id="activities">
-                <img src="assets/images/activities_button.png" alt="">
-            </button>
-        </span> -->
+
         </div>
+        <div id="buttondiv">
+                <!-- buttons to narrow content -->
+                <span class="buttons">
+                        <!-- <button type="button" class="btn btn-link" id="movies">
+                            
+                        </button>
+                        <button type="button" class="btn btn-link" id="food">
+                            
+                        </button> -->
+                        <nav class="navbar navbar-expand-lg navbar" id="filterButtons">
+                                <ul class="nav nav-pills">
+                                        <li class="nav-item">
+                                          <a class="nav-link buttons" href="#"><img src="assets/images/movie_button.png" alt=""></a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link buttons" href="#"><img src="assets/images/food_button.png" alt=""></a>
+                                        </li>
+                                    </ul>
+                                </nav>  
+                            </span> 
+            </div>
+    
         <div class="container-fluid">
             <div class="row">
                 <!-- chat div -->
