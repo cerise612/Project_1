@@ -9,11 +9,12 @@ var movieDateAndZip;
 var omdbArray = [];
 var showVoteResults = false;
 var showTimeResults = false;
-var moviesContainer = $("#results"); 
-moviesContainer.empty();
-var votingData = $("#vote"); 
+var moviesContainer = $("#results");
+var votingData = $("#vote");
 var winMoviePoster;
+var showTimeDisplayArray = [];
 
+// moviesContainer.empty();
 
 database.ref("flags").on("value", function (snapshot) {
     flags = snapshot.val();
@@ -31,6 +32,9 @@ database.ref("flags").on("value", function (snapshot) {
     if (flags.timeVoting) {
 
         voteMovieTimes();
+    }
+    if (flags.allVotingEnded) {
+        allVotingEnded();
     }
 
 });
@@ -143,7 +147,7 @@ database.ref("votesTime").on("value", function (snapshot) {
 
 
 
-}
+    }
 });
 
 
@@ -160,14 +164,27 @@ database.ref("votesTime").on("value", function (snapshot) {
 // startMovie();
 
 function startMovie() {
+    moviesContainer.empty();
     console.log("startingMovie");
     database.ref("flags").update({
         "movieVoting": false,
-        "timeVoting": false
+        "timeVoting": false,
+        "allVotingEnded": false
+    });
+    database.ref("votesTime").set({
+        "No votes yet 1": "0",
+        "No votes yet 2": "0",
+        "No votes yet 3": "0"
+    });
+    database.ref("votes").set({
+        "No votes yet 1": "0",
+        "No votes yet 2": "0",
+        "No votes yet 3": "0"
     });
     // <p>Date: <input type="text" id="datepicker"></p>
     moviesContainer.append('<br>Movie Date: <input class="datepicker_recurring_start" id="getDate"/>');
-    moviesContainer.append('<br>Zip-Code: <input id="getZip"/>');
+    moviesContainer.append('<br>Zip-Code: <input id="getZip"/>') //.attr("value", zipcode);
+    document.getElementById("getZip").defaultValue = zipcode;
     moviesContainer.append('<button id= "submitDateAndZip">Submit</button>');
     $(moviesContainer).on('focus', ".datepicker_recurring_start", function () {
         $(this).datepicker();
@@ -250,7 +267,7 @@ function populateMovies() {
                     var movieImg = $("<img>").attr("src", movieImgURL).addClass("poster").css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
                     movieNameP = $("<p>").text(movieNameResponse);
 
-                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(65%, -275%)").attr("id", movieID + "check").css("display", "none");
+                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-75%, 10%)").attr("id", movieID + "check").css("display", "none");
 
                     omdbArray.push({
                         "Name": movieNameResponse,
@@ -290,7 +307,6 @@ function voteMovieTimes() {
 
         movieTimesJSON = JSON.parse(temp[movieDateAndZip]);
 
-        posterIndexs = JSON.parse(snapshot.child("posterURLs").val());
         winMovie = snapshot.child("winningMovie").val()
         if (winMovie == "No votes yet 1") {
             return;
@@ -299,10 +315,10 @@ function voteMovieTimes() {
 
         var movieID = movieTimesJSON[index].tmsId;
         var showTimes = movieTimesJSON[index].showtimes;
+        posterIndexs = JSON.parse(snapshot.child("posterURLs").val());
         var posterIndex = posterIndexs.findIndex(obj => obj.Name == winMovie);
         var posterURL = posterIndexs[posterIndex].URL;
         winMoviePoster = posterURL;
-        var showTimeDisplayArray = [];
 
         var childArray = [];
         var storeTheatre;
@@ -348,17 +364,17 @@ function voteMovieTimes() {
         var movieContainer = $("<div class='row'>").css("float", "left").css("width", "40%");
         var movieIMG = $("<img>").attr("src", posterURL).css("width", "50%").addClass("col-sm").attr("id", "resultsImage");
         // moviesContainer.append("<h4 class='row'>Winning Movie</h4>");
-        
+
         // movieContainer.append(movieIMG);
-        
+
         // moviesContainer.append(movieContainer)
 
         var timesContainer = $("<div>").css("width", "40%").css("float", "left").addClass("col-sm row").attr("id", "resultsField");
         for (x in showTimeDisplayArray) {
-            timesContainer.append("<b>" + showTimeDisplayArray[x].theatre +" - ID: "+showTimeDisplayArray[x].id + "</b>")
+            timesContainer.append("<b>" + showTimeDisplayArray[x].theatre + " - ID: " + showTimeDisplayArray[x].id + "</b>")
             for (y in showTimeDisplayArray[x].times) {
-                var str = showTimeDisplayArray[x].id +"_"+ showTimeDisplayArray[x].times[y]
-                timesContainer.append("<p class='time' vote='false' id=" + str+ ">" + showTimeDisplayArray[x].times[y] + "</p>");
+                var str = showTimeDisplayArray[x].id + "_" + showTimeDisplayArray[x].times[y]
+                timesContainer.append("<p class='time' vote='false' id=" + str + ">" + showTimeDisplayArray[x].times[y] + "</p>");
 
             }
 
@@ -371,7 +387,49 @@ function voteMovieTimes() {
 
 }
 
+function allVotingEnded() {
+    database.ref().once("value", function (snapshot) {
+        var winningTime = snapshot.child("winningTime").val();
+        var tempID = winningTime.slice(0, 3)
+        var winTime = winningTime.slice(5, 10);
+        var showTimeDisplayArray = JSON.parse(snapshot.child("winingShowTimes").val())
+        var winMovie = snapshot.child("winningMovie").val();
 
+        var posterIndexs = JSON.parse(snapshot.child("posterURLs").val());
+        console.log(posterIndexs);
+        var posterIndex = posterIndexs.findIndex(obj => obj.Name == winMovie);
+        var posterURL = posterIndexs[posterIndex].URL;
+        console.log(showTimeDisplayArray);
+        for (x in showTimeDisplayArray) {
+            if ((showTimeDisplayArray[x].id.includes(tempID))) {
+                winTheatre = (showTimeDisplayArray[x].theatre);
+                winLink = (showTimeDisplayArray[x].getTickets);
+                break;
+            }
+
+        }
+        var winMovie = snapshot.child("winningMovie").val();
+
+        moviesContainer.empty();
+
+        var movieContainer = $("<div>").css("float", "left").css("width", "40%");
+        var movieIMG = $("<img>").attr("src", posterURL).css("width", "90%");
+        // moviesContainer.append("<h4>Winning Movie</h4>");
+        movieContainer.append(movieIMG);
+        movieContainer.append("<p>" + winMovie + "</p>");
+        movieContainer.append("<p>" + winTheatre + "</p>");
+        movieContainer.append("<p>" + winTime + "</p><br>");
+        movieContainer.append("<a href=" + winLink + ">Get Tickets</a>")
+
+        moviesContainer.append(movieContainer);
+        console.log(showTimeDisplayArray);
+        console.log(winTheatre);
+        console.log(winLink);
+
+
+    });
+
+}
 
 //ON CLICKS
 $(votingData).on("click", function (e) {
@@ -405,17 +463,13 @@ $(votingData).on("click", function (e) {
         console.log("Vote Ending");
         database.ref("flags").update({
             "movieVoting": false,
-            "timeVoting": false
+            "timeVoting": false,
+            "allVotingEnded": true
 
         });
-        moviesContainer.empty();
 
-        var movieContainer = $("<div>").css("float", "left").css("width", "40%");
-        var movieIMG = $("<img>").attr("src", winMoviePoster).css("width", "90%");
-        moviesContainer.append("<h4>Winning Movie</h4>");
-        movieContainer.append(movieIMG);
-        movieContainer.append("<p>" + winMovie + "</p>");
-        moviesContainer.append(movieContainer);
+
+        allVotingEnded();
 
 
     }
@@ -454,7 +508,7 @@ moviesContainer.on("click", function (e) {
             temp = $(e.target).text()
             temp = temp.slice(1);
             $(e.target).text(temp)
-            
+
         }
 
     }
@@ -506,5 +560,5 @@ moviesContainer.on("click", function (e) {
         });
     }
 
-}); 
-$("#movies").on("click", startMovie ());
+});
+$("#movies").on("click", function () { startMovie() });
