@@ -13,7 +13,8 @@ var txtPassword = document.getElementById("txtPassword");
 var btnLogIn = document.getElementById("btnLogin");
 var btnSignUp = document.getElementById("btnSignUp");
 var btnLogout = document.getElementById("btnLogout");
-
+$(window).load(function() {
+    $("#register").hide()  
 //add login event
 btnLogIn.addEventListener('click', e => {
     //get email and password
@@ -51,3 +52,4 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.add('show');
     }
 })
+});

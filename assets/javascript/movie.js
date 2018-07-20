@@ -182,6 +182,10 @@ function startMovie() {
         "No votes yet 3": "0"
     });
     // <p>Date: <input type="text" id="datepicker"></p>
+    // $('#movies').click('shown.bs.modal', function () {
+    //     $('#myModal').trigger('<br>Movie Date: <input class="datepicker_recurring_start" id="getDate"/>');
+    //     $('#myModal').trigger('<br>Zip-Code: <input id="getZip"/>') //.attr("value", zipcode);
+    //   })
     moviesContainer.append('<br>Movie Date: <input class="datepicker_recurring_start" id="getDate"/>');
     moviesContainer.append('<br>Zip-Code: <input id="getZip"/>') //.attr("value", zipcode);
     document.getElementById("getZip").defaultValue = zipcode;
@@ -267,7 +271,7 @@ function populateMovies() {
                     var movieImg = $("<img>").attr("src", movieImgURL).addClass("poster").css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
                     movieNameP = $("<p>").text(movieNameResponse);
 
-                    var checkMark = $("<img>").attr("src", "assets/images/checkmark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-75%, 10%)").attr("id", movieID + "check").css("display", "none");
+                    var checkMark = $("<img>").attr("src", "assets/images/checkmark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-100%, 10%)").attr("id", movieID + "check").css("display", "none");
 
                     omdbArray.push({
                         "Name": movieNameResponse,
@@ -413,7 +417,7 @@ function allVotingEnded() {
         moviesContainer.empty();
 
         var movieContainer = $("<div>").css("float", "left").css("width", "40%");
-        var movieIMG = $("<img>").attr("src", posterURL).css("width", "90%");
+        var movieIMG = $("<img>").attr("src", URL).css("width", "90%");
         // moviesContainer.append("<h4>Winning Movie</h4>");
         movieContainer.append(movieIMG);
         movieContainer.append("<p>" + winMovie + "</p>");

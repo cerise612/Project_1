@@ -63,19 +63,10 @@ setTimeout(function () {
 // location retrieved
 function geolocationSuccess(position) {
   var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-
-
   // Write the formatted address
-
   for (x in userLocations) {
     userLat = JSON.parse(JSON.stringify(userLatLng)).lat
     userLng = JSON.parse(JSON.stringify(userLatLng)).lng
-    // lat = (JSON.parse(userLocations[x]).lat)
-    // lng = (JSON.parse(userLocations[x]).lng)
-    // console.log(lat,lng, userLat, userLng);
-    // console.log(lat-userLat, lng-userLng);
-
     if ((Math.abs(lat - userLat) < .01) && (Math.abs(lng - userLng) < .01)) {
       console.log("User too close");
       break;
@@ -84,9 +75,7 @@ function geolocationSuccess(position) {
       database.ref("userLocations").push({
         tempUserLoc
       });
-
     }
-
   }
 
 
@@ -238,14 +227,6 @@ function geolocationSuccess(position) {
       }
     })(circle, j));
   };
-
-  //central location
-  // var bound = new google.maps.LatLngBounds();
-  // for (k = 0; k < userLocations.length; k++) {
-  //   bound.extend(new google.maps.LatLng(userLocations[k]));
-  //   // OTHER CODE
-  // }
-  // console.log(bound.getCenter());
 }
 
 // Error
