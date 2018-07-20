@@ -165,7 +165,7 @@ database.ref("votesTime").on("value", function (snapshot) {
 
 function startMovie() {
     moviesContainer.empty();
-    console.log("startingMovie");
+    // console.log("startingMovie");
     database.ref("flags").update({
         "movieVoting": false,
         "timeVoting": false,
@@ -206,7 +206,7 @@ function getDate(movieDate, movieZip) {
                 url: movieLookupURL,
                 method: "GET"
             }).then(function (response) {
-                console.log(response);
+                // console.log(response);
                 var movieTimes = JSON.stringify(response)
 
                 database.ref("movieTimes").update({
@@ -396,10 +396,10 @@ function allVotingEnded() {
         var winMovie = snapshot.child("winningMovie").val();
 
         var posterIndexs = JSON.parse(snapshot.child("posterURLs").val());
-        console.log(posterIndexs);
+        // console.log(posterIndexs);
         var posterIndex = posterIndexs.findIndex(obj => obj.Name == winMovie);
         var posterURL = posterIndexs[posterIndex].URL;
-        console.log(showTimeDisplayArray);
+        // console.log(showTimeDisplayArray);
         for (x in showTimeDisplayArray) {
             if ((showTimeDisplayArray[x].id.includes(tempID))) {
                 winTheatre = (showTimeDisplayArray[x].theatre);
@@ -422,9 +422,9 @@ function allVotingEnded() {
         movieContainer.append("<a href=" + winLink + ">Get Tickets</a>")
 
         moviesContainer.append(movieContainer);
-        console.log(showTimeDisplayArray);
-        console.log(winTheatre);
-        console.log(winLink);
+        // console.log(showTimeDisplayArray);
+        // console.log(winTheatre);
+        // console.log(winLink);
 
 
     });
