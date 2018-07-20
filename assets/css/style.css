@@ -68,12 +68,12 @@ h6{
     margin-top: 2px;
 }
 
-button[type="submit"] {
+/* button[type="submit"] {
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
     color:whitesmoke;
     background-color:#04060F;
-}
+} */
 
 .odd{
     background-color: whitesmoke; 
@@ -98,6 +98,41 @@ button[type="submit"] {
 } */
 #resultsField{
     margin-top: 0px;
+}
+.time{
+    height: 5vh;
+}
+#clearTimeVotesBtn{
+    margin-left: 2px;
+    background-color: #c1403d;  
+    color:whitesmoke;
+    border-radius: 8px;
+    border: none;
+}
+#endTimeVotingBtn{
+    margin-left: 2px;
+    background-color: #c1403d;  
+    color:whitesmoke;
+    border-radius: 8px;
+    border: none;   
+}
+
+#getDate{
+    height: 10vh;
+    width: 10vw;
+}
+#getZip{
+    height: 10vh;
+    width: 10vw;
+}
+#submitDateAndZip{
+    margin-left: 2px;
+    background-color: #c1403d;  
+    color:whitesmoke;
+    border-radius: 8px;
+    border: none;
+    height: 5vh;
+    width: 7vw;
 }
 /* calendar */
 
@@ -196,13 +231,19 @@ h5{
     border-width: 2px;
     border-color: #a79c93;
 }
-#logIn{
+#btnLogin{
     background-color:#04060F;
     color:whitesmoke;
     border-radius: 8px;
     border: none;
 }
-#signUp{
+#btnSignUp{
+    background-color:#04060F;
+    color:whitesmoke;
+    border-radius: 8px;
+    border: none;
+}
+#btnLogout{
     background-color:#04060F;
     color:whitesmoke;
     border-radius: 8px;
@@ -214,6 +255,7 @@ h5{
     border-radius: 8px;
     border: none;
 }
+
 /* responsiveness */
 /* Phones */
 /* Portrait and Landscape */
@@ -463,6 +505,9 @@ h5{
         border-width: 1px;
         border-color: #04060F;
         font-size: xx-small;
+    }
+    #winningPoster{
+        height: 20vh;
     }
     #clearVotesBtn{
         float: right;
