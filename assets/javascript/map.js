@@ -1,4 +1,5 @@
 // geolocation
+var zipcode = '';
 function writeAddressName(latLng) {
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({
@@ -14,31 +15,86 @@ function writeAddressName(latLng) {
 
 // multiple users
 var userLocations = [];
+var lat;
+var lng;
 
 database.ref("userLocations").on("child_added", function (snapshot) {
-    userLocations.push(snapshot.val().tempUserLoc);
-    console.log(userLocations);
-    // !____________________________________________________
+  userLocations.push(snapshot.val().tempUserLoc);
+  lat = 0;
+  lng = 0;
+  // console.log(userLocations);
+  for (x in userLocations) {
+    lat += (JSON.parse(userLocations[x]).lat)
+    lng += (JSON.parse(userLocations[x]).lng)
+  }
 
-
-    // !____________________________________________________
-
+  lat /= userLocations.length;
+  lng /= userLocations.length;
+  // userCenter = {"lat":lat, "lng":lng};
 });
+
+// !____________________________________________________
+setTimeout(function () {
+
+  var latlng = new google.maps.LatLng(lat, lng);
+  // This is making the Geocode request
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    if (status !== google.maps.GeocoderStatus.OK) {
+      alert(status);
+    }
+
+    // This is checking to see if the Geoeode Status is OK before proceeding
+    if (status == google.maps.GeocoderStatus.OK) {
+
+      var address = results[0].address_components;
+      for (var i = 0; i < address.length; i++) {
+        if (address[i].types.includes("postal_code")) { zipcode = address[i].short_name; }
+      }
+      console.log(zipcode);
+    }
+  });
+
+
+}, 1000)
+// !____________________________________________________
+
 
 // location retrieved
 function geolocationSuccess(position) {
   var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-  // console.log(JSON.stringify(userLatLng));
 
 
   // Write the formatted address
 
+  for (x in userLocations) {
+    userLat = JSON.parse(JSON.stringify(userLatLng)).lat
+    userLng = JSON.parse(JSON.stringify(userLatLng)).lng
+    // lat = (JSON.parse(userLocations[x]).lat)
+    // lng = (JSON.parse(userLocations[x]).lng)
+    // console.log(lat,lng, userLat, userLng);
+    // console.log(lat-userLat, lng-userLng);
+
+    if ((Math.abs(lat - userLat) < .01) && (Math.abs(lng - userLng) < .01)) {
+      console.log("User too close");
+      break;
+    } else if (x == userLocations.length - 1) {
+      var tempUserLoc = JSON.stringify(userLatLng)
+      database.ref("userLocations").push({
+        tempUserLoc
+      });
+
+    }
+
+  }
+
+
   userLocations.push(JSON.stringify(userLatLng))
   var tempUserLoc = JSON.stringify(userLatLng)
-  database.ref("userLocations").push({
-    tempUserLoc
-  });
+  // database.ref("userLocations").push({
+  //   tempUserLoc
+  // });
   writeAddressName(userLatLng);
   var myOptions = {
     zoom: 10,
@@ -184,11 +240,11 @@ function geolocationSuccess(position) {
   };
 
   //central location
-  var bound = new google.maps.LatLngBounds();
-  for (k = 0; k < userLocations.length; k++) {
-    bound.extend(new google.maps.LatLng(userLocations[k]));
-    // OTHER CODE
-  }
+  // var bound = new google.maps.LatLngBounds();
+  // for (k = 0; k < userLocations.length; k++) {
+  //   bound.extend(new google.maps.LatLng(userLocations[k]));
+  //   // OTHER CODE
+  // }
   // console.log(bound.getCenter());
 }
 
