@@ -199,7 +199,7 @@ function getDate(movieDate, movieZip) {
             console.log("Date in database");
 
         } else {
-            var movieLookupURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=" + movieDate + "&zip=" + movieZip + "&api_key=" + gracenoteAPIKey
+            var movieLookupURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate=" + movieDate + "&zip=" + movieZip + "&api_key=" + gracenoteAPIKey
             console.log("Retrieving Times for " + movieDate + " Zip: " + movieZip);
 
             $.ajax({
@@ -267,7 +267,7 @@ function populateMovies() {
                     var movieImg = $("<img>").attr("src", movieImgURL).addClass("poster").css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
                     movieNameP = $("<p>").text(movieNameResponse);
 
-                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-75%, 10%)").attr("id", movieID + "check").css("display", "none");
+                    var checkMark = $("<img>").attr("src", "assets/images/checkmark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-75%, 10%)").attr("id", movieID + "check").css("display", "none");
 
                     omdbArray.push({
                         "Name": movieNameResponse,
