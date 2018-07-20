@@ -344,7 +344,7 @@ function voteMovieTimes() {
         moviesContainer.empty();
         var movieContainer = $("<div>").css("float", "left").css("width", "40%");
         var movieIMG = $("<img>").attr("src", posterURL).css("width", "90%");
-        moviesContainer.append("<h4>Winning Movie</h4>");
+        moviesContainer.append("<h4 display='block'>Winning Movie</h4>");
         movieContainer.append(movieIMG);
         movieContainer.append("<p>" + winMovie + "</p>");
         moviesContainer.append(movieContainer);

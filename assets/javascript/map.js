@@ -14,16 +14,46 @@ function writeAddressName(latLng) {
 
 // multiple users
 var userLocations = [];
+var lat;
+var lng;
 
 database.ref("userLocations").on("child_added", function (snapshot) {
     userLocations.push(snapshot.val().tempUserLoc);
-    console.log(userLocations);
-    // !____________________________________________________
+    lat = 0;
+    lng = 0;
+    for (x in userLocations){
+     lat+= (JSON.parse(userLocations[x]).lat)
+     lng+= (JSON.parse(userLocations[x]).lng)
+    }
+    
+    lat /= userLocations.length;
+    lng /= userLocations.length;
+    // userCenter = {"lat":lat, "lng":lng};
+  });
+  
+  // !____________________________________________________
+  setTimeout(function(){
+      
+        var latlng = new google.maps.LatLng(lat, lng);
+        // This is making the Geocode request
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+            if (status !== google.maps.GeocoderStatus.OK) {
+                alert(status);
+            }
+            // This is checking to see if the Geoeode Status is OK before proceeding
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log(results);
+                var index = results.findIndex(obj => obj.title == "postal_code")
+                var address = (results[0].formatted_address);
+                console.log(address)
+            }
+        });
     
 
-    // !____________________________________________________
+  },1000)
+  // !____________________________________________________
 
-});
 
 // location retrieved
 function geolocationSuccess(position) {
