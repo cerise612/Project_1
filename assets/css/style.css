@@ -1,6 +1,9 @@
 body{
     font-family: 'Montserrat', sans-serif;
 }
+body,html {
+    width: 100%;
+}
 /* header */
 #header{
     height: 192px;
@@ -10,18 +13,11 @@ body{
     border-style: ridge;
     border-width: 3px;
     border-color: #a79c93;
-<<<<<<< HEAD
-    /* background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; */
-    /* position: absolute; */
-    /* border: thick solid;
-    border-color: red;
-    font-family: 'Limelight', cursive; */
-=======
->>>>>>> ff97204d6830c023a18f6a0a78ca01ab16f4fb13
+}
+#headerButtons{
+    position: absolute;
+    bottom: -24vh;
+    left: 84.5vw;
 }
 /* map */
  /* Always set the map height explicitly to define the size of the div
@@ -29,14 +25,19 @@ body{
 #map{
     height: 75vh;
     z-index: 1;
-    /* border-style: ridge;
+    border-style: ridge;
     border-width: 1px;
-    border-color: #a79c93; */
+    border-color: #a79c93;
 }
-.buttons{
-    z-index: 2; 
-    display: block;
-    /* flex-direction: column; */
+#filterButtons{
+    z-index: 9999; 
+    position: absolute;
+    bottom: 40vh;
+    left: 90vw;
+}
+
+#buttondiv{
+    height:2px;
 }
 /* chat */
 h6{
@@ -65,11 +66,6 @@ h6{
     border-radius: 8px;
     border: none;
     margin-top: 2px;
-<<<<<<< HEAD
-
-}
-/* results */
-=======
 }
 
 button[type="submit"] {
@@ -91,20 +87,25 @@ button[type="submit"] {
     width: 100%;
     padding: 0px;
 }
->>>>>>> ff97204d6830c023a18f6a0a78ca01ab16f4fb13
 #results{
     height: 1000px;
 }
 #vote{
     height: 192 px;
 }
+/* #resultsImage{
+    height:100%;
+} */
+#resultsField{
+    margin-top: 0px;
+}
 /* calendar */
+
 #sidebar-wrapper {
     margin-right: -150px;
     right: 70px;
     width: 25vh;
     background: #222;
-    /* position: fixed; */
     height: 100%;
     z-index: 10000;
     transition: all .4s ease 0s;
@@ -122,6 +123,12 @@ button[type="submit"] {
     background-color:#d6cbc2;
 }
 #clearVotesBtn{
+    float: right;
+    background-color:#04060F;
+    color:whitesmoke;
+    border-radius: 8px;
+}
+#endMovieVotingBtn{
     float: right;
     background-color:#04060F;
     color:whitesmoke;
@@ -146,19 +153,11 @@ p{
     border-color: #0294A5;
 }
 #newEvent{
-    position: relative;
-    left:1390px;
-    top: 140px;
     background-color: #c1403d;
     color: whitesmoke;
-    font-family: 'Montserrat', sans-serif;
     border-radius: 8px;
     border: none;
-}
-#user{
-    position: relative;
-    left:1220px;
-    top: 140px; 
+    padding: 0px;
 }
 #accountInfo{
     border-style: ridge;
@@ -216,23 +215,53 @@ h5{
     border: none;
 }
 /* responsiveness */
-@media (max-width: 640px) {
+/* Phones */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 2) {
     #header {
         height: 96px;
         background: url("../images/header_small.png"); 
         background-repeat: no-repeat;
         background-position: center;
     }
+    #headerButtons{
+        position: absolute;
+        bottom: -18vh;
+        left: -3vw;
+    }
+
+    /* #newEvent{
+        background-color: #c1403d;
+        color: whitesmoke;
+        font-family: 'Montserrat', sans-serif;
+        font-size: xx-small;
+        text-align: center;
+        border-radius: 8px;
+        border: none;
+        width:52px;
+        position: absolute;
+        top: -3vh;
+        right:87vw;
+
+    } */
+
     #map{
         height: 35vh;
         z-index: 1;
+    }
+    #filterButtons{
+        z-index: 9999; 
+        position: absolute;
+        bottom: 55vh;
+        left: 80vw;
     }
     img{
         width: 20px;  height: 20px 
     }
     #chat{
-        /* float: left;
-       width: 25%; */
        height: 200px;
        padding-left: 0px; 
         padding-right: 0px;
@@ -245,15 +274,13 @@ h5{
    #text{
     width:25%;
 }
-   /* #resultsHeader{
-    float: left;
-    width: 75%;  
-   } */
    #results{
-    /* float: left;
-   width: 75%; */
    height: 500px;
    }
+   .poster{
+    width: 30px;
+    height: 60px;
+}
    #vote{
     height: 96px;
     }
@@ -273,49 +300,238 @@ h5{
         border-radius: 8px;
         width: 40px;
     }
+    #endMovieVotingBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #resultsImage{
+    height:80%;
+    }
 }
-@media (max-width: 940px) {
+/* tablets */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 812px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
     #header {
         height: 96px;
         background: url("../images/header_small.png"); 
         background-repeat: no-repeat;
         background-position: center;
     }
+    #headerButtons{
+        position: absolute;
+        bottom: -16vh;
+        left: 75vw;
+    }
+
+    /* #newEvent{
+        background-color: #c1403d;
+        color: whitesmoke;
+        font-family: 'Montserrat', sans-serif;
+        font-size: xx-small;
+        text-align: center;
+        border-radius: 8px;
+        border: none;
+        width:52px;
+        position: absolute;
+        top: -3vh;
+        right:87vw;
+
+    } */
+
     #map{
         height: 35vh;
         z-index: 1;
+    }
+    #filterButtons{
+        z-index: 9999; 
+        position: absolute;
+        bottom: 55vh;
+        left: 92vw;
     }
     img{
         width: 20px;  height: 20px 
     }
     #chat{
-       /* width: 25%; */
-       height: 500px;
+       height: 200px;
        padding-left: 0px; 
         padding-right: 0px;
         margin-left: 0px;
         margin-right: 0px;
    }
+   #userName{
+       width:25%;
+   }
+   #text{
+    width:25%;
+}
    #results{
-   /* width: 75%; */
    height: 500px;
    }
    .poster{
-       width: 30px;
-       height: 60px;
-   }
+    width: 30px;
+    height: 60px;
+}
    #vote{
-    height: 75px;
+    height: 96px;
     }
+    p{
+        color:#04060F;  
+        display: inline-block;
+        border-style: ridge;
+        border-width: 1px;
+        border-color: #04060F;
+        font-size: xx-small;
     }
-
-/* @media (max-width: 1200px) {
-    #block1, #block2 {
-        width: 50%;
+    #clearVotesBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #endMovieVotingBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #resultsImage{
+    height:80%;
+    }
+}
+/* the in between */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #headerButtons{
+        position: absolute;
+        bottom: -13vh;
+        left: 75vw;
+    }
+    #map{
+        height: 35vh;
+        z-index: 1;
+    }
+    #filterButtons{
+        z-index: 9999; 
+        position: absolute;
+        bottom: 55vh;
+        left: 92vw;
+    }
+    img{
+        width: 20px;  height: 20px 
+    }
+    #chat{
+       height: 200px;
+       padding-left: 0px; 
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+   }
+   #userName{
+       width:25%;
+   }
+   #text{
+    width:25%;
+}
+   #results{
+   height: 500px;
+   }
+   .poster{
+    width: 30px;
+    height: 60px;
+}
+   #vote{
+    height: 96px;
+    }
+    p{
+        color:#04060F;  
+        display: inline-block;
+        border-style: ridge;
+        border-width: 1px;
+        border-color: #04060F;
+        font-size: xx-small;
+    }
+    #clearVotesBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #endMovieVotingBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #resultsImage{
+    height:80%;
+    }
+}
+/* laptop */
+/* ----------- Non-Retina Screens ----------- */
+/* @media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    #headerButtons{
+        position: absolute;
+        bottom: -13vh;
+        left: 75vw;
+    }
+    #filterButtons{
+        z-index: 9999; 
+        position: absolute;
+        bottom: 75vh;
+        left: 100vw;
+    }
+   #text{
+    width:25%;
+}
+   .poster{
+    width: 30px;
+    height: 60px;
+}
+    p{
+        color:#04060F;  
+        display: inline-block;
+        border-style: ridge;
+        border-width: 1px;
+        border-color: #04060F;
+        font-size: xx-small;
+    }
+    #clearVotesBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
+    }
+    #endMovieVotingBtn{
+        float: right;
+        background-color:#04060F;
+        color:whitesmoke;
+        font-size: x-small;
+        border-radius: 8px;
+        width: 40px;
     }
 } */
-/* @media (max-width: 1800px) {
-    #block1, #block2 {
-        width: 50%;
-    }
-}  */
+
+

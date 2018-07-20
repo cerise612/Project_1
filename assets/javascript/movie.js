@@ -51,9 +51,10 @@ database.ref("votes").on("value", function (snapshot) {
     votesInOrder.sort(function (a, b) {
         return b[1] - a[1];
     });
-    var win1P = $("<p>").text(votesInOrder[0][0] + ": " + votesInOrder[0][1] + " vote(s)").css("margin","auto");
-    var win2P = $("<p>").text(votesInOrder[1][0] + ": " + votesInOrder[1][1] + " vote(s)").css("margin","auto");
-    var win3P = $("<p>").text(votesInOrder[2][0] + ": " + votesInOrder[2][1] + " vote(s)").css("margin","auto");
+
+    var win1P = $("<p>").text(votesInOrder[0][0] + ": " + votesInOrder[0][1] + " votes").css("margin", "auto");
+    var win2P = $("<p>").text(votesInOrder[1][0] + ": " + votesInOrder[1][1] + " votes").css("margin", "auto");
+    var win3P = $("<p>").text(votesInOrder[2][0] + ": " + votesInOrder[2][1] + " votes").css("margin", "auto");
     votingData.empty();
 
     if (showVoteResults) {
@@ -247,7 +248,9 @@ function populateMovies() {
                     movieContainer.css("width", "14%").css("display", "inline-block");
                     var movieImg = $("<img>").attr("src", movieImgURL).addClass("poster").css("width", "90%").attr("id", movieID).attr("name", movieNameResponse).attr("vote", "false");
                     movieNameP = $("<p>").text(movieNameResponse);
-                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(-105%, 10%)").attr("id", movieID + "check").css("display", "none");
+
+                    var checkMark = $("<img>").attr("src", "assets/images/checkMark.png").css("z-index", "99").css("text-align", "center").css("width", "10%").css("position", "absolute").css("transform", "translate(65%, -275%)").attr("id", movieID + "check").css("display", "none");
+
                     omdbArray.push({
                         "Name": movieNameResponse,
                         "URL": movieImgURL
@@ -341,24 +344,27 @@ function voteMovieTimes() {
         });
 
         moviesContainer.empty();
-        var movieContainer = $("<div>").css("float", "left").css("width", "40%");
-        var movieIMG = $("<img>").attr("src", posterURL).css("width", "90%");
-        moviesContainer.append("<h4>Winning Movie</h4>");
-        movieContainer.append(movieIMG);
-        movieContainer.append("<p>" + winMovie + "</p>");
-        moviesContainer.append(movieContainer);
+        var movieContainer = $("<div class='row'>").css("float", "left").css("width", "40%");
+        var movieIMG = $("<img>").attr("src", posterURL).css("width", "50%").addClass("col-sm").attr("id", "resultsImage");
+        // moviesContainer.append("<h4 class='row'>Winning Movie</h4>");
+        
+        // movieContainer.append(movieIMG);
+        
+        // moviesContainer.append(movieContainer)
 
-        var timesContainer = $("<div>").css("width", "40%").css("float", "left");
+        var timesContainer = $("<div>").css("width", "40%").css("float", "left").addClass("col-sm row").attr("id", "resultsField");
         for (x in showTimeDisplayArray) {
             timesContainer.append("<b>" + showTimeDisplayArray[x].theatre +" - ID: "+showTimeDisplayArray[x].id + "</b>")
             for (y in showTimeDisplayArray[x].times) {
                 var str = showTimeDisplayArray[x].id +"_"+ showTimeDisplayArray[x].times[y]
-                timesContainer.append("<p class='time' vote='false' id=" + str+ ">" + showTimeDisplayArray[x].times[y] + "</p>").css("margin", "auto");
+                timesContainer.append("<p class='time' vote='false' id=" + str+ ">" + showTimeDisplayArray[x].times[y] + "</p>");
 
             }
 
         }
-        moviesContainer.append(timesContainer);
+        var movieDiv = $("<div class='row'>").append(movieIMG, timesContainer);
+        // moviesContainer.append(timesContainer);
+        moviesContainer.append(movieDiv);
 
     });
 
