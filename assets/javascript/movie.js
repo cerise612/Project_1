@@ -9,9 +9,9 @@ var movieDateAndZip;
 var omdbArray = [];
 var showVoteResults = false;
 var showTimeResults = false;
-var moviesContainer = $("#results"); //! Change to actual container
+var moviesContainer = $("#results"); 
 moviesContainer.empty();
-var votingData = $("#vote"); //! Change to actual container
+var votingData = $("#vote"); 
 var winMoviePoster;
 
 
@@ -160,6 +160,7 @@ database.ref("votesTime").on("value", function (snapshot) {
 // startMovie();
 
 function startMovie() {
+    console.log("startingMovie");
     database.ref("flags").update({
         "movieVoting": false,
         "timeVoting": false
@@ -426,7 +427,7 @@ moviesContainer.on("click", function (e) {
 
     if (e.target.className == "time") {
         var timeVote = $(e.target).attr("vote");
-        console.log(timeVote);
+        // console.log(timeVote);
         // var timeVoted = e.target.getAttribute("vote"); ✔
         if (timeVote != "true") {
             $(e.target).attr("vote", "true")
@@ -505,4 +506,5 @@ moviesContainer.on("click", function (e) {
         });
     }
 
-});
+}); 
+$("#movies").on("click", startMovie ());
